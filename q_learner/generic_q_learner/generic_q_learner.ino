@@ -4,7 +4,9 @@ using namespace std;
 
 
 //https://www.geeksforgeeks.org/multidimensional-arrays-c-cpp/
-
+//https://www.mblock.cc/doc/en/developer-documentation/tutorials/how-to-write-sprite-role-extension.html
+// http://download.makeblock.com/mblock/mblock_extension_guide.pdf
+// https://forum.makeblock.com/t/get-rgb-values-from-color-block/15093/12
 /*
    Design the serial communication
 
@@ -89,7 +91,7 @@ void loop() {
             // Populate state value from message
             state = message[STATE_INDEX];
             action_out = q_learner.decideAction(state);
-            if ((action_out >= 0) || (action_out < q_learner.action_size)) {
+            if ((action_out >= 0) || (action_out < q_learner.getActionSize())) {
               Serial.println(action_out);
             } else {
               Serial.println("getting weird action");
@@ -102,7 +104,7 @@ void loop() {
           case REQUEST_TEST:
             // Obtain reward for particular point in table
             //Serial.write(q_learner.experience_count);
-            Serial.println(q_learner.experience_count);
+            Serial.println(q_learner.getExperienceCount());
             break;
         }
 //    if (message[FUNCTION_INDEX] == REQUEST_TEST) {
